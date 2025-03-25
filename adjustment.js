@@ -38,7 +38,7 @@ document.getElementById("close").addEventListener("click", function (event) {
 //===== fetch data ke card ======
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const response = await fetch("product/json/product.json");
+        const response = await fetch("/product/json/product.json");
         const data = await response.json();
 
         const firstCard = document.querySelector(".product-container");

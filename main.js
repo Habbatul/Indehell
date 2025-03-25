@@ -26,7 +26,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 let rt;
 
 const loaderx = new THREE.TextureLoader();
-loaderx.load("hdri/background-liminal-hqhan.webp", function (texture) {
+loaderx.load("/hdri/background-liminal-hqhan.webp", function (texture) {
   texture.encoding = THREE.sRGBEncoding; 
   texture.colorSpace = THREE.SRGBColorSpace; 
   texture.magFilter = THREE.LinearFilter;
@@ -43,7 +43,7 @@ loaderx.load("hdri/background-liminal-hqhan.webp", function (texture) {
 
 //======== draco decoder inisialization ========
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath("/indehell/decoder/");
+dracoLoader.setDecoderPath("/decoder/");
 dracoLoader.setDecoderConfig({ type: "wasm" });
 
 // ============================ setting start posisi camera & size objek ===============
@@ -114,7 +114,7 @@ let mixer1;
 let slide1;
 const loader1 = new GLTFLoader();
 loader1.setDRACOLoader(dracoLoader);
-loader1.load("gltf/scene1DracoV2.glb", function (gltf) {
+loader1.load("/gltf/scene1DracoV2.glb", function (gltf) {
   slide1 = gltf.scene;
   slide1.position.set(0,0.2,0);
   slide1.rotation.set(0.1,4.9,0)
@@ -147,7 +147,7 @@ let mixer2;
 let animateSlide2;
 let unanimateSlide2;
 
-loader2.load("gltf/scene2MeshoptV3.glb", function (gltf) {
+loader2.load("/gltf/scene2MeshoptV3.glb", function (gltf) {
   slide2 = gltf.scene;
   slide2.position.set(0, 3, 0); 
   slide2.scale.set(scene2Scale.x, scene2Scale.y, scene2Scale.z); 

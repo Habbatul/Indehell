@@ -34,11 +34,11 @@ export default defineConfig({
             dest: 'product'
           },
           {
-            src: 'style/*',
-            dest: 'style'
+            src: "adjustment.js", 
+            dest: "" 
           }
       ]
     })
   ],
-  base : '/indehell/'
+  base : '/'
 });
