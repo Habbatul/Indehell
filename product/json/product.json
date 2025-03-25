@@ -1,0 +1,25 @@
+{
+    "produk": [
+        {
+            "title": "LIMITED TSHIRT \"UNDYING\" UNISEX",
+            "description": "Reguler custom fit, short sleeve t-shirt with a plastisol ink screen.",
+            "image": "product/images/undying-tshirt.webp",
+            "instagramLink": "https://www.instagram.com/indehellcatalog/p/DFc3kj3ziLI/?img_index=1",
+            "shopeeLink": "https://id.shp.ee/yWxFkST"
+        },
+        {
+            "title": "LIMITED TSHIRT \"TORTURE\" UNISEX",
+            "description": "Boxy fit, short sleeve t-shirt with a plastisol ink screen.",
+            "image": "product/images/torture-tshirt.webp",
+            "instagramLink": "https://www.instagram.com/indehellcatalog/p/DAF--MbPZVG/?img_index=1",
+            "shopeeLink": "https://id.shp.ee/HuVfkyW"
+        },
+        {
+            "title": "LIMITED H-FLASK \"TORTURE SERIES\"",
+            "description": "Stainless steel pocket bottle with metal engraving custom design.",
+            "image": "product/images/torture-hflask.webp",
+            "instagramLink": "https://www.instagram.com/indehellcatalog/p/DCMA6HkzyNG/?img_index=1",
+            "shopeeLink": "-"
+        }
+    ]
+}

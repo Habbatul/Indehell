@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Inspiration&family=Jaini&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-dosis: "Dosis", sans-serif;
+    --font-jaini: "Jaini", system-ui;
+    --font-inspiration: "Inspiration", cursive;
+    --font-raleway: "Raleway", sans-serif;
+
+    --animate-shake: shake 0.5s ease-in-out;
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-5px); }
+        40% { transform: translateX(5px); }
+        60% { transform: translateX(-5px); }
+        80% { transform: translateX(5px); }
+    }
+}
