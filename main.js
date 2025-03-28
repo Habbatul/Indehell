@@ -63,7 +63,7 @@ Object.assign(scene1Scale, window.matchMedia("(min-width: 1024px)").matches
 
 
 //========== bg particles using shader ================
-const particleCount = 280;
+const particleCount = 290;
 const positions = new Float32Array(particleCount * 3);
 
 for (let i = 0; i < particleCount; i++) {
@@ -75,20 +75,29 @@ for (let i = 0; i < particleCount; i++) {
 const geometry = new THREE.BufferGeometry();
 geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-const uniforms = { u_time: { value: 0 } };
+const uniforms = {
+  u_time: { value: 0 }, 
+  u_pixelRatio: { value: Math.min(window.devicePixelRatio, 2) } 
+};
 
 const particleMaterial = new THREE.ShaderMaterial({
     uniforms: uniforms,
     vertexShader: `
         uniform float u_time;
         varying float vOpacity;
+        uniform float u_pixelRatio;
         
         void main() {
             vec3 newPosition = position;
             newPosition.y += sin(u_time * 4.0 + position.x * 5.0) * 0.2;
             vOpacity = 0.5 + 0.5 * sin(u_time + position.y/(-0.1));
-            
-            gl_PointSize = 3.0;
+
+            float baseSize = 2.6;
+            if (u_pixelRatio > 1.5) { 
+              baseSize = 2.8;
+            }
+              
+            gl_PointSize = baseSize * u_pixelRatio*1.1;
             gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
         }
     `,
@@ -96,15 +105,20 @@ const particleMaterial = new THREE.ShaderMaterial({
         varying float vOpacity;
         
         void main() {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, vOpacity);
+            vec2 uv = gl_PointCoord - vec2(0.5);
+            float alpha = 1.0 - smoothstep(0.45, 0.5, length(uv));
+
+            if (alpha < 0.1) discard; // Buat bagian luar transparan
+
+            gl_FragColor = vec4(1.0, 0.0, 0.0, alpha * vOpacity); // Warna merah dengan transparansi
         }
     `,
     transparent: true
 });
 
 const particles = new THREE.Points(geometry, particleMaterial);
-particles.scale.set(20,8)
-particles.position.set(0,0,-20)
+particles.scale.set(24,10)
+particles.position.set(-3,0,-20)
 scene.add(particles);
 
 
@@ -922,6 +936,9 @@ function updateSize() {
 
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
+
+  uniforms.u_pixelRatio.value = Math.min(window.devicePixelRatio, 2);
+  uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
 }
 
 window.addEventListener("resize", updateSize);
